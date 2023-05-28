@@ -27,7 +27,7 @@ func (i impl) CreateTodo(ctx context.Context, t *models.Todo) error {
 func (i impl) GetTodoByID(ctx context.Context, id int) (ModelTodo, error) {
 	t, err := models.Todos(models.TodoWhere.ID.EQ(id)).One(ctx, i.dbConn)
 	if err != nil {
-		return ModelTodo{}, errors.WithStack(err)
+		return ModelTodo{}, err
 	}
 	return TodoModel(t), nil
 }
